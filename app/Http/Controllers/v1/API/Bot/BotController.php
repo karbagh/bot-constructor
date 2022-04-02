@@ -19,7 +19,6 @@ class BotController extends Controller
 
         $bot->setWebhook('https://bot-constructor.herokuapp.com/api/bot/webhook');
         $bot->handleGetUpdates();
-        321
         Log::error('Hook message', [321]);
         $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
             Log::info('Hook message', [$update]);
@@ -31,6 +30,7 @@ class BotController extends Controller
     {
         $bot = new Telegram('5198795597:AAGmCvaioJOhg1PSezP9IOMGiYYMfv5QeQ8', 'testbotorconstructorbot');
         Log::info('Hook message', [321]);
+        \Longman\TelegramBot\Request::sendMessage(['text' => '321654']);
 
         $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
             Log::info('Hook message', [$update]);
