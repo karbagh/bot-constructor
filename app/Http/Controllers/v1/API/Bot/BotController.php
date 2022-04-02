@@ -14,7 +14,7 @@ class BotController extends Controller
     ): void {
         $bot = new Telegram('5198795597:AAGmCvaioJOhg1PSezP9IOMGiYYMfv5QeQ8', 'testbotorconstructorbot');
 
-        $bot->setWebhook('http://bot-constructor.test/webhook');
+        $bot->setWebhook('https://bot-constructor.herokuapp.com');
         \Longman\TelegramBot\Request::sendMessage(['text' => '321654']);
     }
 }
