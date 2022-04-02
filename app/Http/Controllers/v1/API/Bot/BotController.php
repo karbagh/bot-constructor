@@ -13,14 +13,14 @@ class BotController extends Controller
 {
     public function test(
         BotMessageService $messageService
-    ): void {
+    ): void
+    {
         $bot = new Telegram('5198795597:AAGmCvaioJOhg1PSezP9IOMGiYYMfv5QeQ8', 'testbotorconstructorbot');
 
         $bot->setWebhook('https://bot-constructor.herokuapp.com/api/bot/webhook');
         $bot->handleGetUpdates();
         $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
-        Log::info('Hook message', [$update]);
-            return false;
+            Log::info('Hook message', [$update]);
         });
         \Longman\TelegramBot\Request::sendMessage(['text' => '321654']);
     }
