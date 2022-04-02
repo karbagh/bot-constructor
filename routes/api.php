@@ -15,6 +15,9 @@ use App\Http\Controllers\v1\API\Bot\BotController;
 |
 */
 Route::prefix('bot')->group(function () {
+    Route::prefix('webhook')->group(function () {
+        Route::any('', [BotController::class, 'webhook']);
+    });
     Route::prefix('message')->group(function () {
         Route::get('send', [BotController::class, 'test']);
     });

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\v1\API\Bot;
 use App\Http\Controllers\Controller;
 use App\Services\Bot\Message\BotMessageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Longman\TelegramBot\Entities\Update;
 use Longman\TelegramBot\Telegram;
 
 class BotController extends Controller
@@ -14,7 +16,22 @@ class BotController extends Controller
     ): void {
         $bot = new Telegram('5198795597:AAGmCvaioJOhg1PSezP9IOMGiYYMfv5QeQ8', 'testbotorconstructorbot');
 
-        $bot->setWebhook('https://bot-constructor.herokuapp.com');
+        $bot->setWebhook('https://bot-constructor.herokuapp.com/api/bot/webhook');
+        $bot->handleGetUpdates();
+        $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
+        Log::info('Hook message', [$update]);
+            return false;
+        });
         \Longman\TelegramBot\Request::sendMessage(['text' => '321654']);
+    }
+
+    public function webhook(Request $request)
+    {
+        $bot = new Telegram('5198795597:AAGmCvaioJOhg1PSezP9IOMGiYYMfv5QeQ8', 'testbotorconstructorbot');
+
+        $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
+            Log::info('Hook message', [$update]);
+            return false;
+        });
     }
 }
