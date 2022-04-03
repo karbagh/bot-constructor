@@ -95,7 +95,7 @@ class BotController extends Controller
             $result = $client->setWebhook($webhookUrl);
             echo "Success!\n";
         } catch (Exception $e) {
-            echo "Error: ". $e->getMessage() ."\n";
+            throw new $e;
         }
     }
 }
