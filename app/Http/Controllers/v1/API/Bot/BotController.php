@@ -20,6 +20,7 @@ class BotController extends Controller
 
         $bot->setWebhook('https://bot-constructor.herokuapp.com/api/bot/webhook');
         $bot->handleGetUpdates();
+        $bot->useGetUpdatesWithoutDatabase();
         Log::error('Hook message', [321]);
         $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
             Log::info('Hook message', [$update]);
