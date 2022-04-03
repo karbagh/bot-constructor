@@ -21,9 +21,10 @@ class BotController extends Controller
         $bot->setWebhook('https://bot-constructor.herokuapp.com/api/bot/webhook');
         $bot->handleGetUpdates();
         $bot->useGetUpdatesWithoutDatabase();
-        Log::error('Hook message', [321]);
+        Log::critical('Test Message');
+        Log::critical('Hook message', [321]);
         $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
-            Log::info('Hook message', [$update]);
+            Log::critical('Hook message', [$update]);
         });
         \Longman\TelegramBot\Request::sendMessage(['text' => '321654']);
     }
@@ -35,7 +36,7 @@ class BotController extends Controller
         \Longman\TelegramBot\Request::sendMessage(['text' => '321654']);
 
         $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
-            Log::info('Hook message', [$update]);
+            Log::critical('Hook message', [$update]);
         });
     }
 }
