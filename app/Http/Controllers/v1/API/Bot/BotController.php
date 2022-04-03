@@ -96,7 +96,7 @@ class BotController extends Controller
             $result = $client->setWebhook($webhookUrl);
             echo "Success!\n";
         } catch (ApiException $e) {
-            throw new $e;
+            throw new Exception($e->getMessage(), $e->getCode());
         }
     }
 }
