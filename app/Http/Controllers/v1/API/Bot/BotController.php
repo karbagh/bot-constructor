@@ -12,6 +12,7 @@ use Longman\TelegramBot\Entities\Update;
 use Longman\TelegramBot\Telegram;
 use Viber\Api\Sender;
 use Viber\Bot;
+use Viber\Client;
 
 class BotController extends Controller
 {
@@ -52,11 +53,11 @@ class BotController extends Controller
 
     public function viber()
     {
-        $apiKey = '4efc1e4791a7e796-d23d8d7bfe65a013-5f82092a859794bd';
+        $apiKey = '4efc27192727e2cc-2aa2282a24fc9dd4-7f1e1496976b8161';
 
         $botSender = new Sender([
-            'name' => 'Whois bot',
-            'avatar' => 'https://developers.viber.com/img/favicon.ico',
+            'name' => 'New Test Bot',
+//            'avatar' => 'https://developers.viber.com/img/favicon.ico',
         ]);
 
         try {
@@ -80,6 +81,21 @@ class BotController extends Controller
                 ->run();
         } catch (Exception $e) {
             // todo - log exceptions
+        }
+    }
+
+    public function viberWebhook()
+    {
+
+        $apiKey = '4efc27192727e2cc-2aa2282a24fc9dd4-7f1e1496976b8161'; // from "Edit Details" page
+        $webhookUrl = 'https://bot-constructor.herokuapp.com/api/bot/message/viber'; // for exmaple https://my.com/bot.php
+
+        try {
+            $client = new Client([ 'token' => $apiKey ]);
+            $result = $client->setWebhook($webhookUrl);
+            echo "Success!\n";
+        } catch (Exception $e) {
+            echo "Error: ". $e->getError() ."\n";
         }
     }
 }
