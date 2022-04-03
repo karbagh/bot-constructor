@@ -37,7 +37,7 @@ class BotController extends Controller
         Log::critical('Hook message', [$update, $update['message'], $update['message']['chat'], $update['message']['chat']['id']]);
 //        \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $request->update->message->chat->id,'text' => '321654']);
         $updateJson = json_encode($update);
-        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Hello $updateJson"]);
+//        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Hello $updateJson"]);
         $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Hello {$update['from']['first_name']} {$update['from']['last_name']}, your username is {$update['from']['username']}, you wrote {$update['text']}"]);
         Log::critical('Result', [$result]);
 
