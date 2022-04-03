@@ -32,17 +32,12 @@ class BotController extends Controller
     public function webhook(Request $request)
     {
         $bot = new Telegram('5198795597:AAGmCvaioJOhg1PSezP9IOMGiYYMfv5QeQ8', 'testbotorconstructorbot');
-        Storage::disk('local')->put('logs/file.txt', 'webhook arrived');
         $update = $request->all();
-//        dd($update);
         Log::critical('Hook message', [$update, $update['message'], $update['message']['chat'], $update['message']['chat']['id'], $update['message']['text']]);
-//        \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $request->update->message->chat->id,'text' => '321654']);
-        $updateJson = json_encode($update);
-//        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Hello $updateJson"]);
-//        {$update['from']['first_name']} {$update['from']['last_name']}
-        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Hello {$update['message']['chat']['first_name']} {$update['message']['chat']['first_name']}, your username is {$update['message']['chat']['username']}, you wrote {$update['message']['text']}"]);
-        Log::critical('Result', [$result]);
 
+        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Hello {$update['message']['chat']['last_name']} {$update['message']['chat']['first_name']}, your username is {$update['message']['chat']['username']}, you wrote {$update['message']['text']}"]);
+        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Բարև {$update['message']['chat']['last_name']} {$update['message']['chat']['first_name']}, քո յուզերնեյմն է {$update['message']['chat']['username']}, դու գրել ես {$update['message']['text']}"]);
+        Log::critical('Result', [$result]);
 
         $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
             Log::critical('Hook message', [$update]);
