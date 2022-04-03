@@ -19,19 +19,19 @@ class BotController extends Controller
         $bot = new Telegram('5198795597:AAGmCvaioJOhg1PSezP9IOMGiYYMfv5QeQ8', 'testbotorconstructorbot');
 
         $bot->setWebhook('https://bot-constructor.herokuapp.com/api/bot/webhook');
-        $bot->handleGetUpdates();
-        $bot->useGetUpdatesWithoutDatabase();
+//        $bot->handleGetUpdates();
+//        $bot->useGetUpdatesWithoutDatabase();
         Log::critical('Test Message');
         Log::critical('Hook message', [321]);
-        $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
-            Log::critical('Hook message', [$update]);
-        });
+//        $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
+//            Log::critical('Hook message', [$update]);
+//        });
         \Longman\TelegramBot\Request::sendMessage(['text' => '321654']);
     }
 
     public function webhook(Request $request)
     {
-        $bot = new Telegram('5198795597:AAGmCvaioJOhg1PSezP9IOMGiYYMfv5QeQ8', 'testbotorconstructorbot');
+//        $bot = new Telegram('5198795597:AAGmCvaioJOhg1PSezP9IOMGiYYMfv5QeQ8', 'testbotorconstructorbot');
         $update = $request->all();
         Log::critical('Hook message', [$update, $update['message'], $update['message']['chat'], $update['message']['chat']['id'], $update['message']['text']]);
 
@@ -39,8 +39,8 @@ class BotController extends Controller
         $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Բարև {$update['message']['chat']['last_name']} {$update['message']['chat']['first_name']}, քո յուզերնեյմն է {$update['message']['chat']['username']}, դու գրել ես {$update['message']['text']}"]);
         Log::critical('Result', [$result]);
 
-        $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
-            Log::critical('Hook message', [$update]);
-        });
+//        $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
+//            Log::critical('Hook message', [$update]);
+//        });
     }
 }
