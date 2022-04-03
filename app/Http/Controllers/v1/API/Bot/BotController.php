@@ -58,7 +58,7 @@ class BotController extends Controller
 
         $botSender = new Sender([
             'name' => 'New Test Bot',
-//            'avatar' => 'https://developers.viber.com/img/favicon.ico',
+            'avatar' => 'https://developers.viber.com/img/favicon.ico',
         ]);
 
         try {
