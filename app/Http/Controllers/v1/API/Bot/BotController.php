@@ -37,7 +37,9 @@ class BotController extends Controller
         Log::critical('Hook message', [$update, $update['message'], $update['message']['chat'], $update['message']['chat']['id'], $update['message']['text']]);
 
 //        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Hello {$update['message']['chat']['last_name']} {$update['message']['chat']['first_name']}, your username is {$update['message']['chat']['username']}, you wrote {$update['message']['text']}"]);
-        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Բարև {$update['message']['chat']['last_name']} {$update['message']['chat']['first_name']}, քո յուզերնեյմն է {$update['message']['chat']['username']}, դու գրել ես {$update['message']['text']}"]);
+        $lastName = $update['message']['chat']['first_name'] ?? ' ';
+        $username = $update['message']['chat']['username'] ?? 'չկա';
+        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Բարև {$update['message']['chat']['last_name']} $lastName, քո յուզերնեյմն է $username, դու գրել ես {$update['message']['text']}"]);
         Log::critical('Result', [$result]);
 
 //        $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
