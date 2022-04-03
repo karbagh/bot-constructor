@@ -4,8 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff32654c2b8e69ff440479b9802bb1e6",
+    "content-hash": "68ae1867a0b25e143165d3aae6af781f",
     "packages": [
+        {
+            "name": "bogdaan/viber-bot-php",
+            "version": "0.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bogdaan/viber-bot-php.git",
+                "reference": "176dc938613d88e42ca04c7e7598f842f8f1cafc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bogdaan/viber-bot-php/zipball/176dc938613d88e42ca04c7e7598f842f8f1cafc",
+                "reference": "176dc938613d88e42ca04c7e7598f842f8f1cafc",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2 | ^7.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "monolog/monolog": "^1.22",
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Viber\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Novikov Bogdan",
+                    "email": "hcbogdan@gmail.com"
+                }
+            ],
+            "description": "Php bot interface to work with Viber API",
+            "keywords": [
+                "bot",
+                "im",
+                "viber"
+            ],
+            "support": {
+                "issues": "https://github.com/Bogdaan/viber-bot-php/issues",
+                "source": "https://github.com/Bogdaan/viber-bot-php/tree/0.0.15"
+            },
+            "time": "2022-01-23T21:49:58+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.9.3",

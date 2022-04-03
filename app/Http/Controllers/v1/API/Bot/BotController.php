@@ -4,11 +4,14 @@ namespace App\Http\Controllers\v1\API\Bot;
 
 use App\Http\Controllers\Controller;
 use App\Services\Bot\Message\BotMessageService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Longman\TelegramBot\Entities\Update;
 use Longman\TelegramBot\Telegram;
+use Viber\Api\Sender;
+use Viber\Bot;
 
 class BotController extends Controller
 {
@@ -45,5 +48,38 @@ class BotController extends Controller
 //        $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
 //            Log::critical('Hook message', [$update]);
 //        });
+    }
+
+    public function viber()
+    {
+        $apiKey = '4efc1e4791a7e796-d23d8d7bfe65a013-5f82092a859794bd';
+
+        $botSender = new Sender([
+            'name' => 'Whois bot',
+            'avatar' => 'https://developers.viber.com/img/favicon.ico',
+        ]);
+
+        try {
+            $bot = new Bot(['token' => $apiKey]);
+            $bot
+                ->onConversation(function ($event) use ($bot, $botSender) {
+                    // this event fires if user open chat, you can return "welcome message"
+                    // to user, but you can't send more messages!
+                    return (new \Viber\Api\Message\Text())
+                        ->setSender($botSender)
+                        ->setText("Can i help you?");
+                })
+                ->onText('', function ($event) use ($bot, $botSender) {
+                    $bot->getClient()->sendMessage(
+                        (new \Viber\Api\Message\Text())
+                            ->setSender($botSender)
+                            ->setReceiver($event->getSender()->getId())
+                            ->setText("I do not know )")
+                    );
+                })
+                ->run();
+        } catch (Exception $e) {
+            // todo - log exceptions
+        }
     }
 }
