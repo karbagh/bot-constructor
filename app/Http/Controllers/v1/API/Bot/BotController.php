@@ -71,7 +71,7 @@ class BotController extends Controller
                         ->setSender($botSender)
                         ->setText("Can i help you?");
                 })
-                ->onText('', function ($event) use ($bot, $botSender) {
+                ->onText('|whois .*|si', function ($event) use ($bot, $botSender) {
                     $bot->getClient()->sendMessage(
                         (new \Viber\Api\Message\Text())
                             ->setSender($botSender)
