@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Longman\TelegramBot\Entities\Update;
 use Longman\TelegramBot\Telegram;
+use Viber\Api\Exception\ApiException;
 use Viber\Api\Sender;
 use Viber\Bot;
 use Viber\Client;
@@ -79,7 +80,7 @@ class BotController extends Controller
                     );
                 })
                 ->run();
-        } catch (Exception $e) {
+        } catch (ApiException $e) {
             // todo - log exceptions
         }
     }
@@ -94,7 +95,7 @@ class BotController extends Controller
             $client = new Client([ 'token' => $apiKey ]);
             $result = $client->setWebhook($webhookUrl);
             echo "Success!\n";
-        } catch (Exception $e) {
+        } catch (ApiException $e) {
             throw new $e;
         }
     }
