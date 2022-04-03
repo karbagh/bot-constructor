@@ -57,31 +57,25 @@ class BotController extends Controller
         $apiKey = '4efc27192727e2cc-2aa2282a24fc9dd4-7f1e1496976b8161';
 
         $botSender = new Sender([
-            'name' => 'New Test Bot',
+            'name' => 'Reply bot',
             'avatar' => 'https://developers.viber.com/img/favicon.ico',
         ]);
 
         try {
-            $bot = new Bot(['token' => $apiKey]);
+            $bot = new Bot([ 'token' => $apiKey ]);
             $bot
-                ->onConversation(function ($event) use ($bot, $botSender) {
-                    // this event fires if user open chat, you can return "welcome message"
-                    // to user, but you can't send more messages!
-                    return (new \Viber\Api\Message\Text())
-                        ->setSender($botSender)
-                        ->setText("Can i help you?");
-                })
-                ->onText('|whois .*|si', function ($event) use ($bot, $botSender) {
+                ->onText('|.*|s', function ($event) use ($bot, $botSender) {
+                    // .* - match any symbols (see PCRE)
                     $bot->getClient()->sendMessage(
                         (new \Viber\Api\Message\Text())
                             ->setSender($botSender)
                             ->setReceiver($event->getSender()->getId())
-                            ->setText("I do not know )")
+                            ->setText("Hi!")
                     );
                 })
                 ->run();
-        } catch (ApiException $e) {
-            // todo - log exceptions
+        } catch (Exception $e) {
+            // todo - log errors
         }
     }
 
