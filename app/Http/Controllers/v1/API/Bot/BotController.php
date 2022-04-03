@@ -56,26 +56,35 @@ class BotController extends Controller
     {
         $apiKey = '4efc27192727e2cc-2aa2282a24fc9dd4-7f1e1496976b8161';
 
+        // так будет выглядеть наш бот (имя и аватар - можно менять)
         $botSender = new Sender([
-            'name' => 'Reply bot',
+            'name' => 'Whois bot',
             'avatar' => 'https://developers.viber.com/img/favicon.ico',
         ]);
 
         try {
-            $bot = new Bot([ 'token' => $apiKey ]);
+            $bot = new Bot(['token' => $apiKey]);
             $bot
-                ->onText('|.*|s', function ($event) use ($bot, $botSender) {
-                    // .* - match any symbols (see PCRE)
+                ->onConversation(function ($event) use ($bot, $botSender) {
+                    // это событие будет вызвано, как только пользователь перейдет в чат
+                    // вы можете отправить "привествие", но не можете посылать более сообщений
+                    return (new \Viber\Api\Message\Text())
+                        ->setSender($botSender)
+                        ->setText("Can i help you?");
+                })
+                ->onText('|whois .*|si', function ($event) use ($bot, $botSender) {
+                    // это событие будет вызвано если пользователь пошлет сообщение
+                    // которое совпадет с регулярным выражением
                     $bot->getClient()->sendMessage(
                         (new \Viber\Api\Message\Text())
                             ->setSender($botSender)
                             ->setReceiver($event->getSender()->getId())
-                            ->setText("Hi!")
+                            ->setText("I do not know )")
                     );
                 })
                 ->run();
         } catch (Exception $e) {
-            // todo - log errors
+            // todo - log exceptions
         }
     }
 
