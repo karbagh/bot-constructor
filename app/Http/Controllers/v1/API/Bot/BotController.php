@@ -35,8 +35,10 @@ class BotController extends Controller
         Storage::disk('local')->put('logs/file.txt', 'webhook arrived');
         $update = $request->all();
         Log::critical('Hook message', [$update, $update['message'], $update['message']['chat'], $update['message']['chat']['id']]);
-        \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $request->update->message->chat->id,'text' => '321654']);
-        \Longman\TelegramBot\Request::sendMessage(['chat_id'=> 1708480454,'text' => '321654']);
+//        \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $request->update->message->chat->id,'text' => '321654']);
+        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => '321654']);
+        Log::critical('Result', [$result]);
+
 
         $bot->setUpdateFilter(function (Update $update, Telegram $telegram, &$reason = 'Update denied by update_filter') {
             Log::critical('Hook message', [$update]);
