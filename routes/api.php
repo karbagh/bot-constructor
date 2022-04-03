@@ -20,5 +20,6 @@ Route::prefix('bot')->group(function () {
     });
     Route::prefix('message')->group(function () {
         Route::get('send', [BotController::class, 'test']);
+        Route::get('viber', [BotController::class, 'viber']);
     });
 });
