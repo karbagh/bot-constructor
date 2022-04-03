@@ -18,9 +18,11 @@ Route::prefix('bot')->group(function () {
     Route::prefix('webhook')->group(function () {
         Route::any('', [BotController::class, 'webhook']);
         Route::any('viber', [BotController::class, 'viberWebhook']);
+        Route::any('fb', [BotController::class, 'facebookWebhook']);
     });
     Route::prefix('message')->group(function () {
         Route::get('send', [BotController::class, 'test']);
-        Route::get('viber', [BotController::class, 'viber']);
+        Route::any('viber', [BotController::class, 'viber']);
+        Route::any('fb', [BotController::class, 'facebook']);
     });
 });

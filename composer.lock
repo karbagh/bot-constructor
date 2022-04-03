@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "68ae1867a0b25e143165d3aae6af781f",
+    "content-hash": "2d41950e6cef0ec7adc5718d5ee2ac7b",
     "packages": [
         {
             "name": "bogdaan/viber-bot-php",
@@ -2947,6 +2947,55 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "samiaraboglu/fb-messenger-bot-php",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/samiaraboglu/fb-messenger-bot-php.git",
+                "reference": "4d393cd20f4aa1f0ebb1b65336e4efc5c0314792"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/samiaraboglu/fb-messenger-bot-php/zipball/4d393cd20f4aa1f0ebb1b65336e4efc5c0314792",
+                "reference": "4d393cd20f4aa1f0ebb1b65336e4efc5c0314792",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "FbMessengerBot\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sami Araboğlu",
+                    "email": "samiaraboglu@gmail.com",
+                    "homepage": "https://github.com/samiaraboglu",
+                    "role": "Developer"
+                }
+            ],
+            "homepage": "https://github.com/samiaraboglu/fb-messenger-bot-php",
+            "keywords": [
+                "Messenger",
+                "facebook",
+                "facebook-messenger",
+                "facebook-messenger-bot",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/samiaraboglu/fb-messenger-bot-php/issues",
+                "source": "https://github.com/samiaraboglu/fb-messenger-bot-php/tree/v2.0.0"
+            },
+            "time": "2020-10-29T16:26:53+00:00"
         },
         {
             "name": "symfony/console",

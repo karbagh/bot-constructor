@@ -90,7 +90,6 @@ class BotController extends Controller
 
     public function viberWebhook()
     {
-
         $apiKey = '4efc27192727e2cc-2aa2282a24fc9dd4-7f1e1496976b8161'; // from "Edit Details" page
         $webhookUrl = 'https://bot-constructor.herokuapp.com/api/bot/message/viber'; // for exmaple https://my.com/bot.php
 
@@ -101,5 +100,16 @@ class BotController extends Controller
         } catch (ApiException $e) {
             throw new Exception($e->getMessage(), $e->getCode());
         }
+    }
+
+    public function facebook()
+    {}
+
+    public function facebookWebhook()
+    {
+        $messenger = new \FbMessengerBot\Messenger('546782170085168|Dpxbo56czMbepaXJEN7QVfSZzzM', 'Dpxbo56czMbepaXJEN7QVfSZzzM');
+        $messenger->listen();
+        $message = new \FbMessengerBot\Message();
+        $message->text('Barev');
     }
 }
