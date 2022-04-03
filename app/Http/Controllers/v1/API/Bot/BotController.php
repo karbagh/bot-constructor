@@ -33,10 +33,10 @@ class BotController extends Controller
     {
         $bot = new Telegram('5198795597:AAGmCvaioJOhg1PSezP9IOMGiYYMfv5QeQ8', 'testbotorconstructorbot');
         Storage::disk('local')->put('logs/file.txt', 'webhook arrived');
-        $update = (object) $request->all();
-        Log::critical('Hook message', [$update, $update->message, $update->message->chat, $update->message->chat->id]);
+        $update = $request->all();
+        Log::critical('Hook message', [$update, $update['message'], $update['message']['chat'], $update['message']['chat']['id']]);
 //        \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $request->update->message->chat->id,'text' => '321654']);
-        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update->message->chat->id,'text' => "Hello {$update->message->chat->first_name} {$update->message->chat->last_name}, your username is {$update->message->chat->username}, you wrote {$update->text}"]);
+        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Hello {$update['message']['from']['first_name']} {$update['message']['from']['last_name']}, your username is {$update['message']['from']['username']}, you wrote {$update['text']}"]);
         Log::critical('Result', [$result]);
 
 
