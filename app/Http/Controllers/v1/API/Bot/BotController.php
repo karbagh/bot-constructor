@@ -35,7 +35,7 @@ class BotController extends Controller
         Storage::disk('local')->put('logs/file.txt', 'webhook arrived');
         $update = $request->all();
 //        dd($update);
-        Log::critical('Hook message', [$update, $update['message'], $update['message']['chat'], $update['message']['chat']['id'], $update['text']]);
+        Log::critical('Hook message', [$update, $update['message'], $update['message']['chat'], $update['message']['chat']['id'], $update['message']['text']]);
 //        \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $request->update->message->chat->id,'text' => '321654']);
         $updateJson = json_encode($update);
 //        $result = \Longman\TelegramBot\Request::sendMessage(['chat_id'=> $update['message']['chat']['id'],'text' => "Hello $updateJson"]);
