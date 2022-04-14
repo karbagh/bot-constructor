@@ -15,6 +15,10 @@ use Viber\Api\Sender;
 use Viber\Bot;
 use Viber\Client;
 use VK\Client\VKApiClient;
+use VK\OAuth\Scopes\VKOAuthGroupScope;
+use VK\OAuth\VKOAuth;
+use VK\OAuth\VKOAuthDisplay;
+use VK\OAuth\VKOAuthResponseType;
 
 class BotController extends Controller
 {
@@ -117,13 +121,24 @@ class BotController extends Controller
     public function vk()
     {
         Log::critical('VK main method');
-//        $vk = new VKApiClient();
     }
 
     public function vkWebhook(Request $request)
     {
         Log::critical('VK bot webhook', [$request->all()]);
+        $vk = new VKApiClient();
+        $oauth = new VKOAuth();
+        $client_id = 8127124;
+        $redirect_uri = route('bot.message.vk');
+        $display = VKOAuthDisplay::PAGE;
+        $scope = array(VKOAuthGroupScope::MESSAGES);
+        $state = '8ce8729bc5e13bbff3d96d6d9e35d4a72736782d377679d5784f655d6bd72e39b913dce1ebb39a99aaefe';
+        $groups_ids = array();
 
+        $browser_url = $oauth->getAuthorizeUrl(VKOAuthResponseType::CODE, $client_id, $redirect_uri, $display, $scope, $state, $groups_ids);
+echo "$browser_url<br>";
+//        xS48beDOXQYS52yB3wvt
+//        f879e1a0f879e1a0f879e1a071f805e334ff879f879e1a09a32bb539781a421987b9eb4
         return '778b7720';
     }
 }
