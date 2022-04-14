@@ -123,5 +123,7 @@ class BotController extends Controller
     public function vkWebhook(Request $request)
     {
         Log::critical('VK bot webhook', [$request->request]);
+
+        return '778b7720';
     }
 }
