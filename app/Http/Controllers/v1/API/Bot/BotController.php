@@ -14,6 +14,7 @@ use Viber\Api\Exception\ApiException;
 use Viber\Api\Sender;
 use Viber\Bot;
 use Viber\Client;
+use VK\Client\VKApiClient;
 
 class BotController extends Controller
 {
@@ -111,5 +112,16 @@ class BotController extends Controller
         $messenger->listen();
         $message = new \FbMessengerBot\Message();
         $message->text('Barev');
+    }
+
+    public function vk()
+    {
+        Log::critical('VK main method');
+//        $vk = new VKApiClient();
+    }
+
+    public function vkWebhook(Request $request)
+    {
+        Log::critical('VK bot webhook', [$request->request]);
     }
 }

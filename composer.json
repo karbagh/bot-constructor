@@ -13,7 +13,8 @@
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
         "longman/telegram-bot": "^0.76.1",
-        "samiaraboglu/fb-messenger-bot-php": "^2.0"
+        "samiaraboglu/fb-messenger-bot-php": "^2.0",
+        "vkcom/vk-php-sdk": "^5.101"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
