@@ -121,6 +121,7 @@ class BotController extends Controller
     public function vk()
     {
         Log::critical('VK main method');
+        return view('vk');
     }
 
     public function vkWebhook(Request $request)
